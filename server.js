@@ -1,13 +1,16 @@
 'use strict';
-const { log } = require('console');
+const { log, error } = require('console');
 const express = require('express');
 require('dotenv').config();
 const superagent = require('superagent');
 
+const cors = require('cors');
+
+
 
 const PORT = process.env.PORT || 4500;
 const server = express();
-
+server.use(cors());
 server.use(express.static('./public'));
 server.use(express.urlencoded({extended:true}));
 
@@ -15,19 +18,25 @@ server.use(express.urlencoded({extended:true}));
 server.set('view engine','ejs');
 
 // localhost:3000/
-server.get('/home',(req,res)=>{
+server.get('/',(req,res)=>{
     res.render('pages/index');
 })
+
+
+/////////////// error handler
+// server.use('*',(req,res)=>{
+//     res.status(500).send('Sorry something went wrong')
+// })
 
 server.get('/search',(req,res)=>{
     res.render('pages/searches/new.ejs')
 })
 
-server.get('/searches/new', searchHandler);
+server.post('/searches/new', searchHandler);
 
 function searchHandler(req,res){
-  let title=req.query.search
-  let intitle=req.query.intitle
+  let title=req.body.search
+  let intitle=req.body.intitle
   let url;
   if(intitle!==undefined){
      url=`https://www.googleapis.com/books/v1/volumes?q=${title}+intitle:${title}&startIndex=0&maxResults=10` 
