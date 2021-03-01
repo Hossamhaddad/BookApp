@@ -6,31 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=], initial-scale=1.0">
     <title>Document</title>
-   <style>.booksContainer{  width: 100%;  display: flex;  flex-direction: column;  justify-content: center;  align-items: center;
-}.booksContainer div{  display: flex;  flex-direction: column;  justify-content: center;  align-items: center;  padding:10px 20px;  margin: 20px auto;  width: 80%;   background-color: #CECDCE;  box-shadow: 1px 2px 3px 2px gray;  }.booksContainer div img{  width: 50%;  height: 200px;  margin: 25px auto;  margin-bottom: 20px;  border:2px solid #FFFEFF;  box-shadow: 1px 2px 3px 2px gray;  }.booksContainer h3{  font-size: 1.6em;  color: #FFFEFF;  text-shadow: 1px 2px 3px gray;  margin:10px auto;  text-align: center;}.booksContainer div p.desc{
-  width: 85%;  line-height: 20px;  margin-top: 10px;  text-align: center;  margin-bottom: 15px;}.booksContainer div p.isbn {  font-size: 1.2em;  text-align: center;  margin-bottom: 15px;
-}.booksContainer h4{  font-style: italic;  text-shadow: 1px 2px 3px rgb(187, 181, 181);  margin-bottom: 15px;  }</style>
+    <style>
+    .savedBooks{ max-width: 300px ;max-height: 350px; display: block; background-color: gray;}      
+    #bookP{ max-width: 300px ;max-height: 350px;  }
+    </style>
 </head>
 
 <body>
-    <div class="booksContainer">
-        <% books.forEach( (book,ind)=> { %> <form id=<%=ind %> method="post" action="/show"> <div> <img
-                        src=<%=book.img %> /> <input type="hidden" name="img" value="<%= book.url %>">
-                    <h3>
-                        <%= book.title %>
-                    </h3> <input type="hidden" name="title" value="<%= book.title %>">
-                    <h4>
-                        <%= book.author %>
-                    </h4> <input type="hidden" name="author" value="<%= book.author %>">
-                    <p>
-                        <%= book.isbn %>
-                    </p> <input type="hidden" name="isbn" value="<%= book.isbn %>"> <input type="hidden"
-                        name="description" value="<%= book.description %>"> <button class="addBook">Add to my
-                        bookshelf</button>
-                </div>
-            </form>
-            <% }) %>
+    <div class="savedBooks">
+        <% books.forEach(book=>{ %>  
+            <img src=<%= book.img %> alt="">  
+        <h3 id="bookH2"><%= book.title %> </h2>
+        <h4 id="bookH3"><%= book.authors %> </h3> 
+        <p id="bookP"><%= book.description %></hp> 
+        <%   })%>
     </div>
+   
 </body>
 
 </html>

@@ -1,5 +1,4 @@
 'use strict';
-const { log, error } = require('console');
 const express = require('express');
 require('dotenv').config();
 const superagent = require('superagent');
@@ -25,7 +24,7 @@ server.get('/',(req,res)=>{
 
 /////////////// error handler
 // server.use('*',(req,res)=>{
-//     res.status(500).send('Sorry something went wrong')
+//     res.render('pages/error')
 // })
 
 server.get('/search',(req,res)=>{
@@ -39,24 +38,24 @@ function searchHandler(req,res){
   let intitle=req.body.intitle
   let url;
   if(intitle!==undefined){
-     url=`https://www.googleapis.com/books/v1/volumes?q=${title}+intitle:${title}&startIndex=0&maxResults=10` 
+     url=`https://www.googleapis.com/books/v1/volumes?q=${title}+intitle:${title}&maxResults=10&startIndex=0` 
   }else{
-     url=`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${title}&startIndex=0&maxResults=10` 
+     url=`https://www.googleapis.com/books/v1/volumes?q=${title}+inauthor:${title}&maxResults=10&startIndex=0` 
   }
+  console.log(url);
  superagent.get(url)
  .then(books=>{
     let booksArray = books.body.items.map(book=> new Books(book));
     res.render('pages/searches/show', {books : booksArray});
     })
 }
-
-let savedBooks=[];
 function Books(data){
     this.title=data.volumeInfo.title
-    this.author=data.volumeInfo.authors[0]
-    this.img=data.volumeInfo.imageLinks.thumbnail ||'https://i.imgur.com/J5LVHEL.jpg';
+    this.authors=data.volumeInfo.authors[0] || `author name isnt available`
+    this.img=data.volumeInfo.imageLinks.thumbnail ||`https://i.imgur.com/J5LVHEL.jpg`
+    this.description=data.volumeInfo.description|| `No avaialbe description`
 }
-console.log(savedBooks);
+
 
 server.listen(PORT,()=>{
   console.log(`Listening on PORT ${PORT}`);
