@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles/base.css">
 </head>
 <body>
+    <header>
     <h1>hello world</h1>
     
     <ul>
@@ -15,9 +16,28 @@
         <li><a href="/search">search</a> </li>
         
     </ul>
+</header>
+<main>
+    <h3>Number of books : <%= NumberofBooks   %> </h3>
+   <ul>
+       
+   <% selectedBooks.forEach(book=> {%>
+   <li>  <img  src="<%= book.image_url  %> " alt="">             </li>
+    <li> <%= book.title   %>       </li>
+    <li>  <%= book.authors   %>  </li>
+    <li> <a href="/books/:<%= book.id %>">details</a> </li>
+    <li><h1><%= book.id %></h1></li>
+   <% }) %>
+    
+</form>
+   </ul>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="/app.js"></script>
+
+
+
+</main>
+    
+
 </body>
 </html>
