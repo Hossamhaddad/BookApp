@@ -7,8 +7,20 @@
     <title>Document</title>
 </head>
 <body>
-   
-    <h1>hello books</h1>
+    <%- include('../../layout/header')  %>
+    
+     <ul>
+   <% booksDetails.forEach(details=>{ %>
+    <li>  <img src="<%=details.image_url %> " alt="">     </li>
+    <li>  <p><%=details.title %> </p></li> 
+    <li>      <p><%=details.authors %> </p>   </li>
+    <li>  <p><%=details.description %> </p> </li>
+    <li>    <p><%=details.isbn %> </p> </li>
+   <% }) %>
+
+     </ul>
 
 </body>
 </html>
+
+

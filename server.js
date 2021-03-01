@@ -88,12 +88,13 @@ client.query(SQL,safeVlues)
 server.get('/books/:id', booksDetails);
 
 function booksDetails (req,res){
-    console.log(req.params.id)
- let SQL=`SELECT * FROM books WHERE id=${req.params.id} ;`;
- client.query(SQL)
+ let value=[req.params.id];
+ console.log(value);
+ let SQL=`SELECT * FROM books WHERE id=$1;`;
+ client.query(SQL,value)
  .then(result=>{
      console.log(result)
-    // res.render('pages/books/show.ejs',{booksDetails:result})
+    res.render('pages/books/show.ejs',{booksDetails:result.rows})
  })
  
 }
