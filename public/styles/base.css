@@ -16,4 +16,16 @@ form div:nth-child(2){  margin-bottom: 0;
 
 }#title , #author{  margin-right: 67%;}
 
+header{
+  background-color: gray;
+}
+ header h1{
 
+text-align: center;
+ }
+ footer{
+   height: 70px;
+   background-color: gray;
+   text-align: center;
+   margin-top: 5px;
+ }
