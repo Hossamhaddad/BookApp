@@ -12,6 +12,7 @@ const overRide=require('method-override')
 
 
 const PORT = process.env.PORT || 4500;
+const client = new pg.Client({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false } });
 const server = express();
 server.use(cors());
 server.use(express.static('./public'));
@@ -19,7 +20,7 @@ server.use(express.urlencoded({ extended: true }));
 server.use(overRide('putMethod'));
 // to tell the express, we want to use ejs template engine
 server.set('view engine', 'ejs');
-const client = new pg.Client(process.env.DATABASE_URL);
+// const client = new pg.Client(process.env.DATABASE_URL);
 
 server.get('/', (req, res) => {
   let SQL='SELECT * FROM books;'
