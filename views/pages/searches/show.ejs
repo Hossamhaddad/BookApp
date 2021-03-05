@@ -6,18 +6,24 @@
     <meta name="viewport" content="width=], initial-scale=1.0">
     <title>Document</title>
     <style>
-    .savedBooks{ max-width: 300px ;max-height: 350px; display: block; background-color: gray;}      
-    #bookP{ max-width: 300px ;max-height: 350px;  }
+  
+
     </style>
+        <link rel="stylesheet" href="../styles/base.css">
 </head>
 
 <body>
     <%- include('../../layout/header')  %>
-    <div class="savedBooks">
+<!--     
+
+    <div class="savedBooks"> -->
+        <ul>
         <% books.forEach(book=>{ %>
-            <form action="/addbook" method="post">
+           
+               
+            <form action="/addbook" method="post" id="searchForm">
             <input type="hidden" name="img" value="<%= book.img %>">
-            <img  src=<%= book.img %> alt="">  
+            <img id="addBookImg"  src=<%= book.img %> alt="" >  
             <input type="hidden" name="title" value="<%= book.title %>">
         <h3 id="bookH2"><%= book.title %> </h3>
             <input type="hidden" name="authors" value="<%= book.authors %>">
@@ -26,9 +32,10 @@
         <p id="bookP"><%= book.description %></hp> 
             <input type="hidden" name="isbn" value="<%= book.isbn %> ">
             <h1>     <%= book.isbn %>           </h1>  
-            <button type="submit">add to book  </button>
+            <button type="submit" id="addBookB">add to book  </button>
          
         </form> 
         <%   })%>
-
+    <!-- </div> -->
+</ul>
 </html>
