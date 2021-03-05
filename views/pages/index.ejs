@@ -11,21 +11,21 @@
     <%- include('../layout/header')  %> 
 <main>
     <h3>Number of books : <%= NumberofBooks   %> </h3>
-   <ul>
-       
-   <% selectedBooks.forEach(book=> {%>
-   <li>  <img  src="<%= book.image_url  %> " alt="">             </li>
-    <li> <%= book.title   %>       </li>
-    <li>  <%= book.authors   %>  </li>
-    <li> <a href="/books/<%= book.id %>">details</a> </li>
-   <% }) %>
+   
     
-</form>
+    <ul >z
+      
+        <div id="indexForm">  
+   <% selectedBooks.forEach(book=> {%>
+    
+   <li>  <img  src="<%= book.image_url  %> " alt="" id="img">             </li>
+    <li > <%= book.title   %>       </li>
+    <li >  <%= book.authors   %>  </li>
+    <li class="savedBook"><button><a href="/books/<%= book.id %>">details</button> </a> </li>
+   <% }) %>
+</div>
+
    </ul>
-
-
-
-
 
 </main>
 <footer>
